@@ -23,4 +23,14 @@ create table Sites
 	Establishment varchar(15)
 )
 
+create table Tourists
+(
+	Id int primary key identity not null,
+	[Name] varchar(50) not null,
+	Age int check (Age >= 0 and Age <= 120) not null,
+	PhoneNumber varchar(20) not null,
+	Nationality varchar(30) not null,
+	Reward varchar(20)
+)
+
 
