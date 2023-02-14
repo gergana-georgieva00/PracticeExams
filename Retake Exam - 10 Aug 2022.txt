@@ -83,3 +83,11 @@ where BonusPrizeId = (select Id from BonusPrizes where [Name] = 'Sleeping bag')
 delete from BonusPrizes
 where [Name] = 'Sleeping bag'
 
+use NationalTouristSitesOfBulgaria
+select 
+[Name], Age, PhoneNumber, Nationality
+from Tourists
+order by Nationality asc,
+		 Age desc,
+		 [Name] asc
+		 
