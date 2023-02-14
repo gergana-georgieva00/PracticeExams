@@ -77,3 +77,9 @@ update Sites
 set Establishment = '(not defined)'
 where Establishment is null
 
+delete from TouristsBonusPrizes
+where BonusPrizeId = (select Id from BonusPrizes where [Name] = 'Sleeping bag')
+
+delete from BonusPrizes
+where [Name] = 'Sleeping bag'
+
