@@ -73,3 +73,7 @@ values
 ('Sinite Kamani Natural Park', 17, 1, null),
 ('St. Petka of Bulgaria – Rupite', 92, 6, '1994')
 
+update Sites
+set Establishment = '(not defined)'
+where Establishment is null
+
