@@ -48,4 +48,13 @@ create table BonusPrizes
 	[Name] varchar(50) not null
 )
 
+create table TouristsBonusPrizes
+(
+	TouristId int not null,
+	BonusPrizeId int not null,
+	primary key(TouristId, BonusPrizeId),
+	foreign key(TouristId) references Tourists(Id),
+	foreign key(BonusPrizeId) references BonusPrizes(Id)
+)
+
 
