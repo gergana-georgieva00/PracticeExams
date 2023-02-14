@@ -42,4 +42,10 @@ create table SitesTourists
 	foreign key (SiteId) references Sites(Id)
 )
 
+create table BonusPrizes
+(
+	Id int primary key not null identity,
+	[Name] varchar(50) not null
+)
+
 
