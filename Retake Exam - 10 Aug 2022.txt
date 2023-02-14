@@ -33,4 +33,13 @@ create table Tourists
 	Reward varchar(20)
 )
 
+create table SitesTourists
+(
+	TouristId int not null,
+	SiteId int not null,
+	primary key(TouristId, SiteId),
+	foreign key (TouristId) references Tourists(Id),
+	foreign key (SiteId) references Sites(Id)
+)
+
 
