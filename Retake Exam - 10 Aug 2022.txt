@@ -2,7 +2,16 @@ create database NationalTouristSitesOfBulgaria
 
 create table Categories
 (
-	Id int primary key not null,
+	Id int primary key not null identity,
 	[Name] varchar(50) not null
 )
+
+create table Locations
+(
+	Id int primary key not null identity,
+	[Name] varchar(50) not null,
+	Municipality varchar(50),
+	Province varchar(50)
+)
+
 
