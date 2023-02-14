@@ -1,0 +1,8 @@
+create database NationalTouristSitesOfBulgaria
+
+create table Categories
+(
+	Id int primary key not null,
+	[Name] varchar(50) not null
+)
+
