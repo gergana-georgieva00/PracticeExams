@@ -14,4 +14,13 @@ create table Locations
 	Province varchar(50)
 )
 
+create table Sites
+(
+	Id int primary key not null identity,
+	[Name] varchar(50) not null,
+	LocationId int foreign key references Locations(Id) not null,
+	CategoryId int foreign key references Categories(Id) not null,
+	Establishment varchar(15)
+)
+
 
