@@ -116,3 +116,16 @@ group by l.Province, l.Municipality, l.[Name]
 order by CountOfSites desc,
 		 [Location] asc
 		 
+
+select 
+s.[Name] as [Site],
+l.[Name] as [Location],
+l.Municipality,
+l.Province,
+s.Establishment
+from Sites as s
+join Locations as l on l.Id = s.LocationId
+where substring(l.[Name], 1, 1) not in ('B', 'M', 'D')
+and s.Establishment like '%BC'
+order by s.[Name] asc
+
