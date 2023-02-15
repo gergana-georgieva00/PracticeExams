@@ -156,3 +156,11 @@ join Categories as c on s.CategoryId = c.Id
 where c.[Name] = 'History and archaeology'
 order by LastName asc
 
+create function udf_GetTouristsCountOnATouristSite (@Site varchar(100))
+returns int
+as 
+begin
+	declare @siteId int = (select Id from Sites where [Name] = @Site);
+	return (select count(*) from SitesTourists where SiteId = @siteId)
+end
+
