@@ -129,3 +129,17 @@ where substring(l.[Name], 1, 1) not in ('B', 'M', 'D')
 and s.Establishment like '%BC'
 order by s.[Name] asc
 
+select
+t.[Name],
+t.Age,
+t.PhoneNumber,
+t.Nationality,
+case 
+	when bp.[Name] is null then '(no bonus prize)'
+	else bp.[Name]
+end as Reward
+from Tourists as t
+full join TouristsBonusPrizes as tbp on t.Id = tbp.TouristId
+left join BonusPrizes as bp on tbp.BonusPrizeId = bp.Id
+order by t.[Name] asc
+
