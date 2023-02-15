@@ -143,3 +143,16 @@ full join TouristsBonusPrizes as tbp on t.Id = tbp.TouristId
 left join BonusPrizes as bp on tbp.BonusPrizeId = bp.Id
 order by t.[Name] asc
 
+select
+distinct
+substring(t.[Name], charindex(' ', t.[Name]) + 1, len(t.[Name])) as LastName,
+t.Nationality,
+t.Age,
+t.PhoneNumber
+from Tourists as t
+join SitesTourists as st on t.Id = st.TouristId
+join Sites as s on st.SiteId = s.Id
+join Categories as c on s.CategoryId = c.Id
+where c.[Name] = 'History and archaeology'
+order by LastName asc
+
