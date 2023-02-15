@@ -104,3 +104,15 @@ order by c.[Name] desc,
 		 l.[Name] asc,
 		 s.[Name] asc
 		 
+select 
+l.Province,
+l.Municipality,
+l.[Name] as [Location],
+count(*) as CountOfSites
+from Locations as l
+join Sites as s on l.Id = s.LocationId
+where l.Province = 'Sofia'
+group by l.Province, l.Municipality, l.[Name]
+order by CountOfSites desc,
+		 [Location] asc
+		 
