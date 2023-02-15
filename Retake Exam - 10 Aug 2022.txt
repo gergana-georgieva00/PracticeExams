@@ -91,3 +91,16 @@ order by Nationality asc,
 		 Age desc,
 		 [Name] asc
 		 
+use NationalTouristSitesOfBulgaria
+select 
+s.[Name] as [Site], 
+l.[Name] as [Location],
+s.Establishment,
+c.[Name] as Category
+from Sites as s
+join Locations as l on l.Id = s.LocationId
+join Categories as c on c.Id = s.CategoryId
+order by c.[Name] desc,
+		 l.[Name] asc,
+		 s.[Name] asc
+		 
