@@ -164,3 +164,18 @@ begin
 	return (select count(*) from SitesTourists where SiteId = @siteId)
 end
 
+create proc usp_AnnualRewardLottery(@TouristName varchar(100))
+as
+declare @touristId int = (select Id from Tourists where [Name] = @TouristName)
+declare @countOfSites int = (select count(*) from SitesTourists where TouristId = @touristId)
+
+select distinct
+@TouristName,
+case 
+	when @countOfSites >= 100 then 'Gold badge'
+	when @countOfSites >= 50 then 'Silver badge'
+	when @countOfSites >= 25 then 'Bronze badge'
+end as Reward
+from Tourists
+
+go
