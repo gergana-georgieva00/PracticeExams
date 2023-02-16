@@ -107,3 +107,14 @@ join Owners as o on a.OwnerId = o.Id
 group by o.[Name]
 order by CountOfAnimals desc
 
+select
+concat(o.[Name], '-', a.[Name]) as OwnersAnimals,
+o.PhoneNumber,
+ac.CageId
+from Owners as o
+join Animals as a on o.Id = a.OwnerId
+join AnimalsCages as ac on a.Id = ac.AnimalId
+where a.AnimalTypeId = (select Id from AnimalTypes where AnimalType = 'Mammals')
+order by o.[Name] asc,
+		 a.[Name] desc
+		 
