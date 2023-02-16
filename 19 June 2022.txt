@@ -20,3 +20,12 @@ create table Cages
 	AnimalTypeId int foreign key references AnimalTypes(Id) not null
 )
 
+create table Animals
+(
+	Id int primary key identity,
+	[Name] varchar(30) not null,
+	BirthDate Date not null,
+	OwnerId int foreign key references Owners(Id),
+	AnimalTypeId int foreign key references AnimalTypes(Id) not null
+)
+
