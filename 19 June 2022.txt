@@ -118,3 +118,13 @@ where a.AnimalTypeId = (select Id from AnimalTypes where AnimalType = 'Mammals')
 order by o.[Name] asc,
 		 a.[Name] desc
 		 
+select 
+v.[Name],
+v.PhoneNumber,
+right(v.[Address], len(v.[Address]) - charindex(', ', v.[Address]))
+from Volunteers as v
+join VolunteersDepartments as vd on v.DepartmentId = vd.Id
+where vd.DepartmentName = 'Education program assistant' and
+CHARINDEX('Sofia', v.[Address], 1) > 0
+order by v.[Name] asc
+
