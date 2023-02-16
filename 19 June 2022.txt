@@ -75,3 +75,10 @@ update Animals
 set OwnerId = (select Id from Owners where [Name] = 'Kaloqn Stoqnov')
 where OwnerId is null
 
+declare @departmentId int = (select Id from VolunteersDepartments where DepartmentName = 'Education program assistant');
+
+delete from Volunteers
+where DepartmentId = @departmentId
+delete from VolunteersDepartments 
+where Id = @departmentId
+
