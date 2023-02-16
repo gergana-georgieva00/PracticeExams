@@ -82,3 +82,10 @@ where DepartmentId = @departmentId
 delete from VolunteersDepartments 
 where Id = @departmentId
 
+select
+[Name], PhoneNumber, [Address], AnimalId, DepartmentId
+from Volunteers
+order by [Name] asc,
+		 AnimalId asc,
+		 DepartmentId asc
+		 
