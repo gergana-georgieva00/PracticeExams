@@ -139,3 +139,11 @@ datediff(year, a.BirthDate, '01/01/2022') < 5
 and a.AnimalTypeId <> 3
 order by a.[Name]
 
+create function udf_GetVolunteersCountFromADepartment (@VolunteersDepartment varchar(100))
+returns int
+as
+begin
+	declare @departmentId int = (select Id from VolunteersDepartments where DepartmentName = @VolunteersDepartment)
+	return (select count(*) from Volunteers where DepartmentId = @departmentId)
+end
+
