@@ -44,3 +44,13 @@ create table VolunteersDepartments
 	DepartmentName varchar(30) not null
 )
 
+create table Volunteers
+(
+	Id int primary key identity,
+	[Name] varchar(50) not null,
+	PhoneNumber varchar(15) not null,
+	[Address] varchar(50),
+	AnimalId int foreign key references Animals(Id),
+	DepartmentId int foreign key references VolunteersDepartments(Id) not null
+)
+
