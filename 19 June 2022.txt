@@ -14,3 +14,9 @@ create table AnimalTypes
 	AnimalType varchar(30) not null
 )
 
+create table Cages
+(
+	Id int primary key identity,
+	AnimalTypeId int foreign key references AnimalTypes(Id) not null
+)
+
