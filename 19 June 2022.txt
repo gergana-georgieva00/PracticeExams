@@ -128,3 +128,14 @@ where vd.DepartmentName = 'Education program assistant' and
 CHARINDEX('Sofia', v.[Address], 1) > 0
 order by v.[Name] asc
 
+select 
+a.[Name],
+year(a.BirthDate) as BirthYear,
+t.AnimalType
+from Animals as a
+join AnimalTypes as t on a.AnimalTypeId = t.Id
+where a.OwnerId is null and 
+datediff(year, a.BirthDate, '01/01/2022') < 5
+and a.AnimalTypeId <> 3
+order by a.[Name]
+
