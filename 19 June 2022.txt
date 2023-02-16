@@ -70,3 +70,8 @@ values
 ('Hamadryas Baboon', '2017-11-02', null, 1),
 ('Tuatara', '2021-06-30', 2, 4)
 
+
+update Animals
+set OwnerId = (select Id from Owners where [Name] = 'Kaloqn Stoqnov')
+where OwnerId is null
+
