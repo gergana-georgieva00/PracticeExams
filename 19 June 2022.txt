@@ -29,3 +29,12 @@ create table Animals
 	AnimalTypeId int foreign key references AnimalTypes(Id) not null
 )
 
+create table AnimalsCages
+(
+	CageId int not null,
+	AnimalId int not null,
+	primary key(CageId, AnimalId),
+	foreign key (CageId) references Cages(Id),
+	foreign key (AnimalId) references Animals(Id)
+)
+
