@@ -8,3 +8,9 @@ create table Owners
 	[Address] varchar(50)
 )
 
+create table AnimalTypes
+(
+	Id int primary key identity,
+	AnimalType varchar(30) not null
+)
+
