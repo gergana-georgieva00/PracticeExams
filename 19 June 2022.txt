@@ -147,3 +147,19 @@ begin
 	return (select count(*) from Volunteers where DepartmentId = @departmentId)
 end
 
+create proc usp_AnimalsWithOwnersOrNot
+(@AnimalName varchar(100))
+as
+
+	declare @ownerId int = (select OwnerId from Animals where [Name] = @AnimalName)
+	declare @ownerName varchar(100) = (select [Name] from Owners where Id = @ownerId)
+
+	select distinct
+	@AnimalName as [Name], 
+	case 
+		when @ownerName is null then 'For adoption'
+		else @ownerName
+	end as OwnersName
+	from Animals as a
+
+go
