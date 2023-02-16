@@ -1,0 +1,10 @@
+create database Zoo
+
+create table Owners
+(
+	Id int primary key identity,
+	[Name] varchar(50) not null,
+	PhoneNumber varchar(15) not null,
+	[Address] varchar(50)
+)
+
