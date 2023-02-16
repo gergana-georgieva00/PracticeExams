@@ -38,3 +38,9 @@ create table AnimalsCages
 	foreign key (AnimalId) references Animals(Id)
 )
 
+create table VolunteersDepartments
+(
+	Id int primary key identity,
+	DepartmentName varchar(30) not null
+)
+
