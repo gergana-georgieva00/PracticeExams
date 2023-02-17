@@ -33,3 +33,12 @@ create table Aircraft
 	TypeId int foreign key references AircraftTypes(Id) not null
 )
 
+create table PilotsAircraft
+(
+	AircraftId int not null,
+	PilotId int not null,
+	primary key(AircraftId, PilotId),
+	foreign key (AircraftId) references Aircraft(Id),
+	foreign key (PilotId) references Pilots(Id)
+)
+
