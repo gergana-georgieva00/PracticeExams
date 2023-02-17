@@ -7,3 +7,12 @@ create table Passengers
 	Email varchar(50) not null
 )
 
+create table Pilots
+(
+	Id int primary key identity,
+	FirstName varchar(30) not null,
+	LastName varchar(30) not null,
+	Age tinyint check (Age >= 21 and Age <= 62) not null,
+	Rating float check(Rating >= 0.0 and Rating <= 10.0)
+)
+
