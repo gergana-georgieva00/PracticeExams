@@ -42,3 +42,10 @@ create table PilotsAircraft
 	foreign key (PilotId) references Pilots(Id)
 )
 
+create table Airports
+(
+	Id int primary key identity,
+	AirportName varchar(70) unique not null,
+	Country varchar(100) unique not null
+)
+
