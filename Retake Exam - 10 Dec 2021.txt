@@ -144,3 +144,11 @@ where (datepart(hour, fd.[Start]) >= 6 and datepart(hour, fd.[Start]) <= 20)
 	  and fd.TicketPrice > 2500
 order by ac.Model
 
+create function udf_FlightDestinationsByEmail(@email varchar(100)) 
+returns int 
+as
+begin
+	declare @passengerId int = (select Id from Passengers where Email = @email)
+	return (select count(*) from FlightDestinations where PassengerId = @passengerId)
+end
+
