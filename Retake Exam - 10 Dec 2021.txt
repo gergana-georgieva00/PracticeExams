@@ -49,3 +49,13 @@ create table Airports
 	Country varchar(100) unique not null
 )
 
+create table FlightDestinations
+(
+	Id int primary key identity,
+	AirportId int foreign key references Airports(Id) not null,
+	[Start] DateTime not null,
+	AircraftId int foreign key references Aircraft(Id) not null,
+	PassengerId int foreign key references Passengers(Id) not null,
+	TicketPrice decimal(18, 2) default 15 not null
+)
+
