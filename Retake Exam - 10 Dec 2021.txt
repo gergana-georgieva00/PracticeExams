@@ -59,3 +59,10 @@ create table FlightDestinations
 	TicketPrice decimal(18, 2) default 15 not null
 )
 
+insert into Passengers (FullName, Email)
+select 
+concat(FirstName, ' ', LastName),
+concat(FirstName, LastName, '@gmail.com')
+from Pilots as p
+where Id between 5 and 15
+
