@@ -129,3 +129,18 @@ group by p.FullName
 having count(*) >= 2 and substring(p.FullName, 2, 1) = 'a'
 order by p.FullName
 
+select
+a.AirportName,
+fd.[Start] as DayTime,
+fd.TicketPrice,
+p.FullName,
+ac.Manufacturer,
+ac.Model
+from Airports as a
+join FlightDestinations as fd on a.Id = fd.AirportId
+join Passengers as p on fd.PassengerId = p.Id
+join Aircraft as ac on fd.AircraftId = ac.Id
+where (datepart(hour, fd.[Start]) >= 6 and datepart(hour, fd.[Start]) <= 20)
+	  and fd.TicketPrice > 2500
+order by ac.Model
+
