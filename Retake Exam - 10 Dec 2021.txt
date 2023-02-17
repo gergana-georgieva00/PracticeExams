@@ -79,3 +79,16 @@ select Manufacturer, Model, FlightHours, Condition
 from Aircraft
 order by FlightHours desc
 
+select 
+p.FirstName,
+p.LastName,
+a.Manufacturer,
+a.Model,
+a.FlightHours
+from Aircraft as a
+join PilotsAircraft as pa on a.Id = pa.AircraftId
+join Pilots as p on pa.PilotId = p.Id
+where not (a.FlightHours is null or a.FlightHours >= 304)
+order by a.FlightHours desc,
+		 p.FirstName asc
+		 
