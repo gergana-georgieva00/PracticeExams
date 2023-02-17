@@ -106,3 +106,16 @@ where day(fd.[Start]) % 2 = 0
 order by fd.TicketPrice desc,
 		 a.AirportName asc
 		 
+select
+a.Id as AircraftId,
+a.Manufacturer, 
+a.FlightHours,
+count(*) as FlightDestinationsCount,
+round(avg(fd.TicketPrice), 2)
+from Aircraft as a
+join FlightDestinations as fd on a.Id = fd.AircraftId
+group by a.Id, a.Manufacturer, a.FlightHours
+having count(*) >= 2
+order by FlightDestinationsCount desc,
+		 AircraftId asc
+		 
