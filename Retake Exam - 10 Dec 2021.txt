@@ -22,3 +22,14 @@ create table AircraftTypes
 	TypeName varchar(30) not null unique
 )
 
+create table Aircraft
+(
+	Id int primary key identity,
+	Manufacturer varchar(25) not null,
+	Model varchar(30) not null,
+	[Year] int not null,
+	FlightHours int,
+	Condition char(1) not null,
+	TypeId int foreign key references AircraftTypes(Id) not null
+)
+
