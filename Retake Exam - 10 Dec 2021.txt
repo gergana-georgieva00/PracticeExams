@@ -119,3 +119,13 @@ having count(*) >= 2
 order by FlightDestinationsCount desc,
 		 AircraftId asc
 		 
+select 
+p.FullName,
+count(*) as CountOfAircraft,
+sum(fd.TicketPrice) as TotalPayed
+from Passengers as p
+join FlightDestinations as fd on p.Id = fd.PassengerId
+group by p.FullName
+having count(*) >= 2 and substring(p.FullName, 2, 1) = 'a'
+order by p.FullName
+
