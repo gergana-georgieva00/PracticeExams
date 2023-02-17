@@ -66,3 +66,9 @@ concat(FirstName, LastName, '@gmail.com')
 from Pilots as p
 where Id between 5 and 15
 
+update Aircraft
+set Condition = 'A'
+where Condition in ('C', 'B')
+	  and (FlightHours is null or FlightHours <= 100)
+	  and [Year] >= 2013
+	  
