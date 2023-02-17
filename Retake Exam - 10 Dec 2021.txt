@@ -75,3 +75,7 @@ where Condition in ('C', 'B')
 delete from Passengers 
 where len(FullName) <= 10
 
+select Manufacturer, Model, FlightHours, Condition
+from Aircraft
+order by FlightHours desc
+
