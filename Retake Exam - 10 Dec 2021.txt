@@ -3,16 +3,22 @@ create database Airport
 create table Passengers
 (
 	Id int primary key identity,
-	FullName varchar(100) not null,
-	Email varchar(50) not null
+	FullName varchar(100) not null unique,
+	Email varchar(50) not null unique
 )
 
 create table Pilots
 (
 	Id int primary key identity,
-	FirstName varchar(30) not null,
-	LastName varchar(30) not null,
+	FirstName varchar(30) not null unique,
+	LastName varchar(30) not null unique,
 	Age tinyint check (Age >= 21 and Age <= 62) not null,
 	Rating float check(Rating >= 0.0 and Rating <= 10.0)
+)
+
+create table AircraftTypes
+(
+	Id int primary key identity,
+	TypeName varchar(30) not null unique
 )
 
