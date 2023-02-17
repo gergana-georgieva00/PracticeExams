@@ -92,3 +92,17 @@ where not (a.FlightHours is null or a.FlightHours >= 304)
 order by a.FlightHours desc,
 		 p.FirstName asc
 		 
+select 
+top 20
+fd.Id as DestinationId,
+fd.[Start],
+p.FullName,
+a.AirportName,
+fd.TicketPrice
+from FlightDestinations as fd
+join Passengers as p on fd.PassengerId = p.Id
+join Airports as a on fd.AirportId = a.Id
+where day(fd.[Start]) % 2 = 0
+order by fd.TicketPrice desc,
+		 a.AirportName asc
+		 
