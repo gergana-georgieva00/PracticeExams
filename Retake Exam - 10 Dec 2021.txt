@@ -1,0 +1,9 @@
+create database Airport
+
+create table Passengers
+(
+	Id int primary key identity,
+	FullName varchar(100) not null,
+	Email varchar(50) not null
+)
+
