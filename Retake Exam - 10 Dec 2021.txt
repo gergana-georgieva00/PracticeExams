@@ -72,3 +72,6 @@ where Condition in ('C', 'B')
 	  and (FlightHours is null or FlightHours <= 100)
 	  and [Year] >= 2013
 	  
+delete from Passengers 
+where len(FullName) <= 10
+
