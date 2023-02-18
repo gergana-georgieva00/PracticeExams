@@ -50,3 +50,12 @@ create table Clients
 	AddressId int foreign key references Addresses(Id) not null
 )
 
+create table ClientsCigars
+(
+	ClientId int unique not null,
+	CigarId int unique not null,
+	primary key (ClientId, CigarId),
+	foreign key(ClientId) references Clients(Id),
+	foreign key(CigarId) references Cigars(Id)
+)
+
