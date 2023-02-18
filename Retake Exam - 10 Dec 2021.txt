@@ -152,3 +152,25 @@ begin
 	return (select count(*) from FlightDestinations where PassengerId = @passengerId)
 end
 
+create proc usp_SearchByAirportName(@airportName varchar(70))
+as
+	declare @airportId int = (select Id from Airports where AirportName = @airportName)
+
+	select 
+	@airportName as AirportName,
+	p.FullName,
+	case 
+		when fd.TicketPrice <= 400 then 'Low'
+		when (fd.TicketPrice >= 401 and fd.TicketPrice <= 1500) then 'Medium'
+		when fd.TicketPrice >= 1501 then 'High'
+	end as LevelOfTicketPrice,
+	ac.Manufacturer,
+	ac.Condition,
+	t.TypeName
+	from FlightDestinations as fd
+	join Passengers as p on fd.PassengerId = p.Id
+	join Aircraft as ac on fd.AircraftId = ac.Id
+	join AircraftTypes as t on ac.TypeId = t.Id
+	where fd.AirportId = @airportId
+	order by ac.Manufacturer, p.FullName
+go
