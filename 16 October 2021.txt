@@ -14,3 +14,10 @@ create table Tastes
 	ImageURL nvarchar(100) not null
 )
 
+create table Brands
+(
+	Id int primary key identity,
+	BrandName varchar(30) not null,
+	BrandDescription varchar(max)
+)
+
