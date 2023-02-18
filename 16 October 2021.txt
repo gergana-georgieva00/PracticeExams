@@ -6,3 +6,11 @@ create table Sizes
 	RingRange decimal(2) check (RingRange >= 1.5 and RingRange <= 7.5) not null
 )
 
+create table Tastes
+(
+	Id int primary key identity,
+	TasteType varchar(20) not null,
+	TasteStrength varchar(15) not null,
+	ImageURL nvarchar(100) not null
+)
+
