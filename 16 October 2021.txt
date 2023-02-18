@@ -32,3 +32,12 @@ create table Cigars
 	ImageURL nvarchar(100) not null
 )
 
+create table Addresses
+(
+	Id int primary key identity,
+	Town varchar(30) not null,
+	Country nvarchar(30) not null,
+	Streat nvarchar(100) not null,
+	ZIP varchar(20) not null
+)
+
