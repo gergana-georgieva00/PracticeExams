@@ -21,3 +21,14 @@ create table Brands
 	BrandDescription varchar(max)
 )
 
+create table Cigars
+(
+	Id int primary key identity,
+	CigarName varchar(80) not null,
+	BrandId int foreign key references Brands(Id) not null,
+	TasteId int foreign key references Tastes(Id) not null,
+	SizeId int foreign key references Sizes(Id) not null,
+	PriceForSingleCigar money not null,
+	ImageURL nvarchar(100) not null
+)
+
