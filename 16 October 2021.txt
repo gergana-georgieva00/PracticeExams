@@ -1,0 +1,8 @@
+use CigarShop
+create table Sizes
+(
+	Id int primary key identity,
+	[Length] int check ([Length] >= 10 and [Length] <= 25) not null,
+	RingRange decimal(2) check (RingRange >= 1.5 and RingRange <= 7.5) not null
+)
+
