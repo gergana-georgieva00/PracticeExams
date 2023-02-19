@@ -117,3 +117,50 @@ left join CreatorsBoardgames as cb on c.Id = cb.CreatorId
 where cb.BoardgameId is null
 order by CreatorName asc
 
+--8
+select 
+top 5
+g.[Name], g.Rating, c.[Name]
+from Boardgames as g 
+join Categories as c on g.CategoryId = c.Id
+join PlayersRanges as pr on g.PlayersRangeId = pr.Id
+where (g.Rating >= 7.0 and g.[Name] like '%a%') or (g.Rating > 7.50 and pr.PlayersMin = 2 and pr.PlayersMax = 5)
+order by g.[Name] asc, g.Rating desc
+
+
+
+
+--9
+select distinct
+FullName, Email, Rating from
+(
+select 
+concat(c.FirstName, ' ', c.LastName) as FullName, 
+c.Email, 
+g.Rating,
+dense_rank() over (partition by FirstName, LastName order by g.Rating desc) as [DenseRank]
+from Creators as c
+join CreatorsBoardgames as cb on c.Id = cb.CreatorId
+join Boardgames as g on cb.BoardgameId = g.Id
+where Email like '%.com'
+) 
+as [SelectClause]
+where [DenseRank] = 1
+order by FullName asc
+
+
+
+
+--10
+select
+c.LastName,
+ceiling(avg(g.Rating)) as AverageRating,
+p.[Name]
+from Creators as c
+join CreatorsBoardgames as cg on c.Id = cg.CreatorId
+join Boardgames as g on cg.BoardgameId = g.Id
+join Publishers as p on g.PublisherId = p.Id
+group by c.LastName, p.[Name]
+having p.[Name] = 'Stonemaier Games'
+order by avg(g.Rating) desc
+
