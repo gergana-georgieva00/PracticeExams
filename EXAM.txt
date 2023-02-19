@@ -83,3 +83,15 @@ update Boardgames
 set [Name] = concat([Name], 'V2')
 where YearPublished >= 2020
 
+declare @addressId int = (select Id from Addresses where charindex('L', Town) = 1)
+--declare @publisherId int = (select Id from Publishers where AddressId = @addressId)
+
+delete from CreatorsBoardgames
+where BoardgameId in (select Id from Boardgames where PublisherId in (select Id from Publishers where AddressId = @addressId))
+delete from BoardGames
+where PublisherId in (select Id from Publishers where AddressId = @addressId)
+delete from Publishers
+where AddressId = @addressId 
+delete from Addresses
+where Id = @addressId 
+
