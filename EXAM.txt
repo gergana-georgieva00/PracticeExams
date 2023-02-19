@@ -164,3 +164,34 @@ group by c.LastName, p.[Name]
 having p.[Name] = 'Stonemaier Games'
 order by avg(g.Rating) desc
 
+--11
+create function udf_CreatorWithBoardgames(@name nvarchar(30))
+returns int 
+as
+begin
+	declare @creatorId int = (select Id from Creators where FirstName = @name)
+	return (select count(*) from CreatorsBoardgames where CreatorId = @creatorId)
+end
+
+SELECT dbo.udf_CreatorWithBoardgames('Bruno')
+
+
+--12
+create proc usp_SearchByCategory(@category varchar(50)) 
+as
+	declare @categoryId int = (select Id from Categories where [Name] = @category)
+
+	select distinct
+	g.[Name],
+	g.YearPublished, 
+	g.Rating,
+	c.[Name] as CategoryName, 
+	p.[Name] as PublisherName,
+	concat(pr.PlayersMin, ' people') as MinPlayers,
+	concat(pr.PlayersMax, ' people') as MaxPlayers
+	from Boardgames as g
+	join Categories as c on c.Id = g.CategoryId
+	join Publishers as p on g.PublisherId = p.Id
+	join PlayersRanges as pr on g.PlayersRangeId = pr.Id
+	where c.Id = @categoryId
+	order by PublisherName asc, YearPublished desc
