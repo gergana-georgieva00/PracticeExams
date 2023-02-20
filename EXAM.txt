@@ -84,7 +84,6 @@ set [Name] = concat([Name], 'V2')
 where YearPublished >= 2020
 
 declare @addressId int = (select Id from Addresses where charindex('L', Town) = 1)
---declare @publisherId int = (select Id from Publishers where AddressId = @addressId)
 
 delete from CreatorsBoardgames
 where BoardgameId in (select Id from Boardgames where PublisherId in (select Id from Publishers where AddressId = @addressId))
@@ -147,8 +146,6 @@ where Email like '%.com'
 as [SelectClause]
 where [DenseRank] = 1
 order by FullName asc
-
-
 
 
 --10
